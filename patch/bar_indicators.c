@@ -13,6 +13,7 @@ void
 drawindicator(Monitor *m, Client *c, unsigned int occ, int x, int y, int w, int h, unsigned int tag, int filled, int invert, int type)
 {
 	int i, boxw, boxs, indn = 0;
+	/* if (!(occ & 1 << tag) || type == INDICATOR_NONE) */
 	if (!(occ & 1 << tag) || type == INDICATOR_NONE)
 		return;
 

@@ -74,7 +74,7 @@ static const int riodraw_matchpid        = 1;  /* 0 or 1, indicates whether to m
 #endif // RIODRAW_PATCH
 #if BAR_STATUSPADDING_PATCH
 static const int horizpadbar             = 5;   /* horizontal padding for statusbar */
-static const int vertpadbar              = 10;   /* vertical padding for statusbar */
+static const int vertpadbar              = 15;   /* vertical padding for statusbar */
 #endif // BAR_STATUSPADDING_PATCH
 #if BAR_STATUSBUTTON_PATCH
 static const char buttonbar[]            = " ";
@@ -84,7 +84,7 @@ static const unsigned int systrayspacing = 2;   /* systray spacing */
 static const int showsystray             = 1;   /* 0 means no systray */
 #endif // BAR_SYSTRAY_PATCH
 /* Indicators: see patch/bar_indicators.h for options */
-static int tagindicatortype              = INDICATOR_BOX;
+static int tagindicatortype              = INDICATOR_PLUS_AND_SQUARE;
 static int tiledindicatortype            = INDICATOR_NONE;
 static int floatindicatortype            = INDICATOR_TOP_LEFT_SQUARE;
 
