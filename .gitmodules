@@ -1,0 +1,3 @@
+[submodule "dwmblocks"]
+	path = dwmblocks
+	url = git@github.com:PhrantiK/dwmblocks.git
