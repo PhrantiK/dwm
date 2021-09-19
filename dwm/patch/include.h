@@ -9,7 +9,7 @@
 #include "bar_ewmhtags.h"
 #include "combo.h"
 #include "bar_ltsymbol.h"
-#include "bar_status.h"
+/* #include "bar_status.h" */
 #include "bar_status2d.h"
 #include "bar_statusbutton.h"
 #include "bar_statuscmd.h"
@@ -39,6 +39,7 @@
 #include "restartsig.h"
 #include "riodraw.h"
 #include "rotatestack.h"
+#include "scratchpads.h"
 #include "selfrestart.h"
 #include "shiftviewclients.h"
 #include "sticky.h"

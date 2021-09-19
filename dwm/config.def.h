@@ -9,7 +9,7 @@ static const unsigned int gappiv         = 20;  /* vert inner gap between window
 static const unsigned int gappoh         = 20;  /* horiz outer gap between windows and screen edge */
 static const unsigned int gappov         = 20;  /* vert outer gap between windows and screen edge */
 static const int smartgaps_fact          = 1;   /* gap factor when there is only one client; 0 = no gaps, 3 = 3x outer gaps */
-static const int usealtbar               = 1;        /* 1 means use non-dwm status bar */
+static const int usealtbar               = 0;        /* 1 means use non-dwm status bar */
 static const char *altbarclass           = "Polybar"; /* Alternate bar class name */
 static const char *altbarcmd             = "$HOME/bar.sh"; /* Alternate bar launch command */
 static const int showbar                 = 1;   /* 0 means no bar */
@@ -133,6 +133,8 @@ static char *colors[][ColCount] = {
 	/*                       fg                bg                border                float */
 	[SchemeNorm]         = { normfgcolor,      normbgcolor,      normbordercolor,      normfloatcolor },
 	[SchemeSel]          = { selfgcolor,       selbgcolor,       selbordercolor,       selfloatcolor },
+	[SchemeScratchNorm]  = { selfgcolor,       selbgcolor,       urgbordercolor,       selfloatcolor },
+	[SchemeScratchSel]   = { selfgcolor,       selbgcolor,       urgbordercolor,       selfloatcolor },
 	[SchemeTitleNorm]    = { titlenormfgcolor, titlenormbgcolor, titlenormbordercolor, titlenormfloatcolor },
 	[SchemeTitleSel]     = { titleselfgcolor,  titleselbgcolor,  titleselbordercolor,  titleselfloatcolor },
 	[SchemeTagsNorm]     = { tagsnormfgcolor,  tagsnormbgcolor,  tagsnormbordercolor,  tagsnormfloatcolor },
@@ -193,7 +195,6 @@ static const char *const autostart[] = {
 static char *tagicons[][NUMTAGS*2] = {
 	[DEFAULT_TAGS]        = { "", "", "", "", "", "廓", "喝", "", "", "" },
 	[ALTERNATIVE_TAGS]    = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J" },
-	[ALT_TAGS_DECORATION] = { "<1>", "<2>", "<3>", "<4>", "<5>", "<6>", "<7>", "<8>", "<9>" },
 };
 
 
@@ -227,6 +228,14 @@ static const Rule rules[] = {
 	RULE(.wintype = WTYPE "TOOLBAR", .isfloating = 1)
 	RULE(.wintype = WTYPE "SPLASH", .isfloating = 1)
 	RULE(.class = "Gimp", .tags = 1 << 4)
+
+	{.class = "kitty", .isterminal = 1},
+	{.class = "Xephyr", .noswallow = 1},
+
+        // Scratchpads
+	{.title = "Scratchpad [a]", .isterminal = 1, .isfloating = 1, .floatpos = "50% 50% 50% 65%", .scratchkey = 'a'},
+	{.title = "Scratchpad [s]", .isterminal = 1, .isfloating = 1, .floatpos = "22% 77% 40% 40%", .scratchkey = 's'},
+	{.title = "Scratchpad [d]", .isterminal = 1, .isfloating = 1, .floatpos = "50% 50% 75% 85%", .scratchkey = 'd'},
 };
 
 static const MonitorRule monrules[] = {
@@ -300,6 +309,10 @@ static const Layout layouts[] = {
 	{ MODKEY|Mod1Mask|ControlMask,  KEY,      tagprevmon,     {.ui = 1 << TAG} },
 
 
+#define SCRATCHKEYS(KEY,CMD) \
+	{ MODKEY,                      KEY,      togglescratch,     {.v = CMD } }, \
+	{ MODKEY|ControlMask,                 KEY,      setscratch,        {.v = CMD } }, \
+	{ MODKEY|ControlMask|ShiftMask,           KEY,      removescratch,     {.v = CMD } }, \
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
@@ -313,6 +326,11 @@ static const char *dmenucmd[] = {
 };
 static const char *termcmd[]  = { "kitty", NULL };
 
+/*First arg only serves to match against key in rules*/
+static const char *scratchcmd1[] = {"a", "kitty", "--title", "Scratchpad [a]", NULL};
+static const char *scratchcmd2[] = {"s", "kitty", "--title", "Scratchpad [s]", NULL};
+static const char *scratchcmd3[] = {"d", "kitty", "--title", "Scratchpad [d]", NULL};
+
 /* This defines the name of the executable that handles the bar (used for signalling purposes) */
 #define STATUSBAR "dwmblocks"
 
@@ -324,6 +342,9 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,           XK_p,          riospawnsync,           {.v = dmenucmd } },
 	{ MODKEY|ControlMask,           XK_Return,     riospawn,               {.v = termcmd } },
 	{ MODKEY,                       XK_s,          rioresize,              {0} },
+        SCRATCHKEYS(                    XK_a,                                  scratchcmd1)
+        SCRATCHKEYS(                    XK_s,                                  scratchcmd2)
+        SCRATCHKEYS(                    XK_d,                                  scratchcmd3)
 	{ MODKEY,                       XK_b,          togglebar,              {0} },
 	{ MODKEY,                       XK_j,          focusstack,             {.i = +1 } },
 	{ MODKEY,                       XK_k,          focusstack,             {.i = -1 } },
