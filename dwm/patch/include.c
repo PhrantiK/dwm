@@ -60,7 +60,6 @@
 #include "layout_columns.c"
 #include "layout_deck.c"
 #include "layout_fibonacci.c"
-#include "layout_flextile-deluxe.c"
 #include "layout_gapplessgrid.c"
 #include "layout_horizgrid.c"
 #include "layout_monocle.c"
