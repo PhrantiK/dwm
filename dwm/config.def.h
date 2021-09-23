@@ -44,8 +44,8 @@ static const int tagschemes[] = {
         SchemeTag10
 };
 
-static char col_bg[]               = "#24283b";
-static char col_bg2[]              = "#111111";
+static char col_bg[]               = "#111111";
+static char col_bg2[]              = "#24283b";
 static char col_gray2[]            = "#414868";
 static char col_gray3[]            = "#565f89";
 static char col_fg[]               = "#c0caf5";
@@ -66,21 +66,21 @@ static const unsigned int alphas[][3] = {
 
 static char *colors[][ColCount] = {
 	/*                       fg                bg                border                float */
-	[SchemeNorm]         = { col_fg,        col_bg2,      col_gray3,      col_gray3 },
-	[SchemeSel]          = { col_fg,       col_bg,       col_cyan,       col_cyan },
-	[SchemeScratchNorm]  = { col_gray2,       col_bg2,       col_cyan,       col_cyan },
-	[SchemeScratchSel]   = { col_gray2,       col_bg2,       col_magenta,       col_magenta },
-	[SchemeTag1]         = { col_magenta,    col_bg2,  col_bg2,  col_gray3 },
-	[SchemeTag2]         = { col_green,    col_bg2,  col_gray3,  col_gray3 },
-	[SchemeTag3]         = { col_blue,    col_bg2,  col_gray3,  col_gray3 },
-	[SchemeTag4]         = { col_cyan,    col_bg2,  col_gray3,  col_gray3 },
-	[SchemeTag5]         = { col_yellow,    col_bg2,  col_gray3,  col_gray3 },
-	[SchemeTag6]         = { col_magenta,  col_bg2,  col_gray3,  col_gray3 },
-	[SchemeTag7]         = { col_green,    col_bg2,  col_gray3,  col_gray3 },
-	[SchemeTag8]         = { col_blue,     col_bg2,  col_gray3,  col_gray3 },
-	[SchemeTag9]         = { col_cyan,     col_bg2,  col_gray3,  col_gray3 },
-	[SchemeTag10]        = { col_yellow,   col_bg2,  col_gray3,  col_gray3 },
-	[SchemeUrg]          = { col_fg,       col_bg2,       col_red,       col_magenta },
+	[SchemeNorm]         = { col_fg,        col_bg,      col_gray3,      col_gray3 },
+	[SchemeSel]          = { col_fg,       col_bg2,       col_cyan,       col_cyan },
+	[SchemeScratchNorm]  = { col_gray2,       col_bg,       col_cyan,       col_cyan },
+	[SchemeScratchSel]   = { col_gray2,       col_bg,       col_magenta,       col_magenta },
+	[SchemeTag1]         = { col_magenta,    col_bg,  col_bg,  col_gray3 },
+	[SchemeTag2]         = { col_green,    col_bg,  col_gray3,  col_gray3 },
+	[SchemeTag3]         = { col_blue,    col_bg,  col_gray3,  col_gray3 },
+	[SchemeTag4]         = { col_cyan,    col_bg,  col_gray3,  col_gray3 },
+	[SchemeTag5]         = { col_yellow,    col_bg,  col_gray3,  col_gray3 },
+	[SchemeTag6]         = { col_magenta,  col_bg,  col_gray3,  col_gray3 },
+	[SchemeTag7]         = { col_green,    col_bg,  col_gray3,  col_gray3 },
+	[SchemeTag8]         = { col_blue,     col_bg,  col_gray3,  col_gray3 },
+	[SchemeTag9]         = { col_cyan,     col_bg,  col_gray3,  col_gray3 },
+	[SchemeTag10]        = { col_yellow,   col_bg,  col_gray3,  col_gray3 },
+	[SchemeUrg]          = { col_fg,       col_bg,       col_red,       col_magenta },
 };
 
 
@@ -213,7 +213,6 @@ static const int scrollargs[][2] = {
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */
-	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
 	{ "|M|",      centeredmaster },
 	{ "|||",      col },
@@ -221,6 +220,7 @@ static const Layout layouts[] = {
 	{ "[\\]",     dwindle },
 	{ "---",      horizgrid },
 	{ ":::",      gaplessgrid },
+	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ NULL,       NULL },
 };
 
@@ -410,7 +410,8 @@ static Button buttons[] = {
 	{ ClkButton,            0,                   Button1,        spawn,          {.v = dmenucmd } },
 	{ ClkButton,            0,                   Button2,        self_restart,           {0} },
 	{ ClkLtSymbol,          0,                   Button1,        setlayout,      {0} },
-	{ ClkLtSymbol,          0,                   Button3,        layoutmenu,     {0} },
+	/* { ClkLtSymbol,          0,                   Button3,        layoutmenu,     {0} }, */
+	{ ClkLtSymbol,          0,                   Button3,        spawn,          SHCMD("layoutmenu.sh") },
 	{ ClkWinTitle,          0,                   Button3,        spawn,          SHCMD("clientmenu.sh") },
 	{ ClkWinTitle,          0,                   Button2,        zoom,           {0} },
 	{ ClkStatusText,        0,                   Button1,        sigstatusbar,   {.i = 1 } },
