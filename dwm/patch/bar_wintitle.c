@@ -13,12 +13,12 @@ draw_wintitle(Bar *bar, BarArg *a)
 	int pad = lrpad / 2;
 
 	if (!c) {
-		drw_setscheme(drw, scheme[SchemeTitleNorm]);
+		drw_setscheme(drw, scheme[SchemeNorm]);
 		drw_rect(drw, x, a->y, w, a->h, 1, 1);
 		return 0;
 	}
 
-	drw_setscheme(drw, scheme[m == selmon ? SchemeTitleSel : SchemeTitleNorm]);
+	drw_setscheme(drw, scheme[m == selmon ? SchemeNorm : SchemeNorm]);
 	XSetErrorHandler(xerrordummy);
 	if (TEXTW(c->name) < w)
 		pad = (w - TEXTW(c->name) + lrpad) / 2;

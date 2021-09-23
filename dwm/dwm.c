@@ -90,11 +90,6 @@ enum {
 	SchemeSel,
         SchemeScratchNorm,
         SchemeScratchSel,
-	SchemeTitleNorm,
-	SchemeTitleSel,
-	SchemeTagsNorm,
-	SchemeTagsSel,
-        SchemeTag,
         SchemeTag1,
         SchemeTag2,
         SchemeTag3,
@@ -105,9 +100,6 @@ enum {
         SchemeTag8,
         SchemeTag9,
         SchemeTag10,
-	SchemeHidNorm,
-	SchemeHidSel,
-	SchemeBBorder,
 	SchemeUrg,
 }; /* color schemes */
 
@@ -383,6 +375,7 @@ static void setclientstate(Client *c, long state);
 static void setfocus(Client *c);
 static void setfullscreen(Client *c, int fullscreen);
 static void setlayout(const Arg *arg);
+static void setlayoutex(const Arg *arg);
 static void setmfact(const Arg *arg);
 static void setup(void);
 static void seturgent(Client *c, int urg);
@@ -971,7 +964,7 @@ createmon(void)
 		bar->external = 0;
 		bar->borderpx = borderpx;
 		bar->bh = bh + bar->borderpx * 2;
-		bar->borderscheme = SchemeBBorder;
+		bar->borderscheme = SchemeTag1;
 	}
 
 
@@ -2114,6 +2107,12 @@ setlayout(const Arg *arg)
 		arrange(selmon);
 	else
 		drawbar(selmon);
+}
+
+static void
+setlayoutex(const Arg *arg)
+{
+	setlayout(&((Arg) { .v = &layouts[arg->i % LENGTH(layouts)] }));
 }
 
 /* arg > 1.0 will set mfact absolutely */

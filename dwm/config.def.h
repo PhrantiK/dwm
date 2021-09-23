@@ -32,10 +32,7 @@ static int floatindicatortype            = INDICATOR_TOP_LEFT_SQUARE;
 
 static int fakefsindicatortype           = INDICATOR_PLUS;
 static int floatfakefsindicatortype      = INDICATOR_PLUS_AND_LARGER_SQUARE;
-/* static const char *fonts[]          = { "Space Grotesk:style=Regular:size=10", */
-/* static const char *fonts[]          = { "Input Mono:style=Regular:size=10", */
 static const char *fonts[]          = { "CatV_6x12_9 Nerd Font:style=Normal:size=12",
-/* static const char *fonts[]          = { "ProFontIIx:style=Regular:size=10", */
                                         /* "Material Icons:style=Regular:size=12", */
                                       };
 static const char dmenufont[]            = "monospace:size=10";
@@ -47,60 +44,17 @@ static const int tagschemes[] = {
         SchemeTag10
 };
 
-static char c000000[]                    = "#000000"; // placeholder value
-
-static char normfgcolor[]                = "#bbbbbb";
-static char normbgcolor[]                = "#222222";
-static char normbordercolor[]            = "#444444";
-static char normfloatcolor[]             = "#db8fd9";
-
-static char selfgcolor[]                 = "#eeeeee";
-static char selbgcolor[]                 = "#111111";
-static char selbordercolor[]             = "#005577";
-static char selfloatcolor[]              = "#005577";
-
-static char titlenormfgcolor[]           = "#bbbbbb";
-static char titlenormbgcolor[]           = "#222222";
-static char titlenormbordercolor[]       = "#444444";
-static char titlenormfloatcolor[]        = "#db8fd9";
-
-static char titleselfgcolor[]            = "#eeeeee";
-static char titleselbgcolor[]            = "#222222";
-static char titleselbordercolor[]        = "#005577";
-static char titleselfloatcolor[]         = "#005577";
-
-static char tagsnormfgcolor[]            = "#bbbbbb";
-static char tagsnormbgcolor[]            = "#222222";
-static char tagsnormbordercolor[]        = "#444444";
-static char tagsnormfloatcolor[]         = "#db8fd9";
-
-static char tagsselfgcolor[]             = "#eeeeee";
-static char tagsselbgcolor[]             = "#111111";
-static char tagsselbordercolor[]         = "#005577";
-static char tagsselfloatcolor[]          = "#005577";
-
-static char hidnormfgcolor[]             = "#adf7a6";
-static char hidselfgcolor[]              = "#f7a6f7";
-static char hidnormbgcolor[]             = "#121d99";
-static char hidselbgcolor[]              = "#66681a";
-
-static char urgfgcolor[]                 = "#DFFF00";
-static char urgbgcolor[]                 = "#222222";
-static char urgbordercolor[]             = "#ff0000";
-static char urgfloatcolor[]              = "#db8fd9";
-
-static char barbordercolor[]             = "#111111";
-static char t1[]                         = "#cb4335";
-static char t2[]                         = "#9b59b6";
-static char t3[]                         = "#b97711";
-static char t4[]                         = "#2980b9";
-static char t5[]                         = "#48c9b0";
-static char t6[]                         = "#DFFF00";
-static char t7[]                         = "#b97711";
-static char t8[]                         = "#CCCCFF";
-static char t9[]                         = "#40E0D0";
-static char t10[]                        = "#9FE2BF";
-
+static char col_bg[]               = "#24283b";
+static char col_bg2[]              = "#111111";
+static char col_gray2[]            = "#414868";
+static char col_gray3[]            = "#565f89";
+static char col_fg[]               = "#c0caf5";
+static char col_magenta[]          = "#bb9af7";
+static char col_red[]              = "#f7768e";
+static char col_green[]            = "#73daca";
+static char col_blue[]             = "#7aa2f7";
+static char col_yellow[]           = "#e0af68";
+static char col_cyan[]             = "#7dcfff";
 
 static const unsigned int baralpha = 0xd0;
 static const unsigned int borderalpha = OPAQUE;
@@ -108,52 +62,25 @@ static const unsigned int alphas[][3] = {
 	/*                       fg      bg        border     */
 	[SchemeNorm]         = { OPAQUE, baralpha, borderalpha },
 	[SchemeSel]          = { OPAQUE, baralpha, borderalpha },
-	[SchemeTitleNorm]    = { OPAQUE, baralpha, borderalpha },
-	[SchemeTitleSel]     = { OPAQUE, baralpha, borderalpha },
-	[SchemeTagsNorm]     = { OPAQUE, baralpha, borderalpha },
-	[SchemeTagsSel]      = { OPAQUE, baralpha, borderalpha },
-	[SchemeTag]          = { OPAQUE, baralpha, borderalpha },
-	[SchemeTag1]         = { OPAQUE, baralpha, borderalpha },
-	[SchemeTag2]         = { OPAQUE, baralpha, borderalpha },
-	[SchemeTag3]         = { OPAQUE, baralpha, borderalpha },
-	[SchemeTag4]         = { OPAQUE, baralpha, borderalpha },
-	[SchemeTag5]         = { OPAQUE, baralpha, borderalpha },
-	[SchemeTag6]         = { OPAQUE, baralpha, borderalpha },
-	[SchemeTag7]         = { OPAQUE, baralpha, borderalpha },
-	[SchemeTag8]         = { OPAQUE, baralpha, borderalpha },
-	[SchemeTag9]         = { OPAQUE, baralpha, borderalpha },
-	[SchemeTag10]        = { OPAQUE, baralpha, borderalpha },
-	[SchemeHidNorm]      = { OPAQUE, baralpha, borderalpha },
-	[SchemeHidSel]       = { OPAQUE, baralpha, borderalpha },
-	[SchemeBBorder]      = { OPAQUE, baralpha, borderalpha },
-	[SchemeUrg]          = { OPAQUE, baralpha, borderalpha },
 };
 
 static char *colors[][ColCount] = {
 	/*                       fg                bg                border                float */
-	[SchemeNorm]         = { normfgcolor,      normbgcolor,      normbordercolor,      normfloatcolor },
-	[SchemeSel]          = { selfgcolor,       selbgcolor,       selbordercolor,       selfloatcolor },
-	[SchemeScratchNorm]  = { selfgcolor,       selbgcolor,       urgbordercolor,       selfloatcolor },
-	[SchemeScratchSel]   = { selfgcolor,       selbgcolor,       urgbordercolor,       selfloatcolor },
-	[SchemeTitleNorm]    = { titlenormfgcolor, titlenormbgcolor, titlenormbordercolor, titlenormfloatcolor },
-	[SchemeTitleSel]     = { titleselfgcolor,  titleselbgcolor,  titleselbordercolor,  titleselfloatcolor },
-	[SchemeTagsNorm]     = { tagsnormfgcolor,  tagsnormbgcolor,  tagsnormbordercolor,  tagsnormfloatcolor },
-	[SchemeTagsSel]      = { tagsselfgcolor,   tagsselbgcolor,   tagsselbordercolor,   tagsselfloatcolor },
-	[SchemeTag]          = { tagsselfgcolor,   tagsnormbgcolor,   tagsselbordercolor,   tagsselfloatcolor },
-	[SchemeTag1]         = { t1,               tagsnormbgcolor,   tagsselbordercolor,   tagsselfloatcolor },
-	[SchemeTag2]         = { t2,               tagsnormbgcolor,   tagsselbordercolor,   tagsselfloatcolor },
-	[SchemeTag3]         = { t3,               tagsnormbgcolor,   tagsselbordercolor,   tagsselfloatcolor },
-	[SchemeTag4]         = { t4,               tagsnormbgcolor,   tagsselbordercolor,   tagsselfloatcolor },
-	[SchemeTag5]         = { t5,               tagsnormbgcolor,   tagsselbordercolor,   tagsselfloatcolor },
-	[SchemeTag6]         = { t6,               tagsnormbgcolor,   tagsselbordercolor,   tagsselfloatcolor },
-	[SchemeTag7]         = { t7,               tagsnormbgcolor,   tagsselbordercolor,   tagsselfloatcolor },
-	[SchemeTag8]         = { t8,               tagsnormbgcolor,   tagsselbordercolor,   tagsselfloatcolor },
-	[SchemeTag9]         = { t9,               tagsnormbgcolor,   tagsselbordercolor,   tagsselfloatcolor },
-	[SchemeTag10]        = { t10,              tagsnormbgcolor,   tagsselbordercolor,   tagsselfloatcolor },
-	[SchemeHidNorm]      = { hidnormfgcolor,   hidnormbgcolor,   c000000,              c000000 },
-	[SchemeHidSel]       = { hidselfgcolor,    hidselbgcolor,    c000000,              c000000 },
-	[SchemeBBorder]       = { hidselfgcolor,    hidselbgcolor,    barbordercolor,              c000000 },
-	[SchemeUrg]          = { urgfgcolor,       urgbgcolor,       urgbordercolor,       urgfloatcolor },
+	[SchemeNorm]         = { col_fg,        col_bg2,      col_gray3,      col_gray3 },
+	[SchemeSel]          = { col_fg,       col_bg,       col_cyan,       col_cyan },
+	[SchemeScratchNorm]  = { col_gray2,       col_bg2,       col_cyan,       col_cyan },
+	[SchemeScratchSel]   = { col_gray2,       col_bg2,       col_magenta,       col_magenta },
+	[SchemeTag1]         = { col_magenta,    col_bg2,  col_bg2,  col_gray3 },
+	[SchemeTag2]         = { col_green,    col_bg2,  col_gray3,  col_gray3 },
+	[SchemeTag3]         = { col_blue,    col_bg2,  col_gray3,  col_gray3 },
+	[SchemeTag4]         = { col_cyan,    col_bg2,  col_gray3,  col_gray3 },
+	[SchemeTag5]         = { col_yellow,    col_bg2,  col_gray3,  col_gray3 },
+	[SchemeTag6]         = { col_magenta,  col_bg2,  col_gray3,  col_gray3 },
+	[SchemeTag7]         = { col_green,    col_bg2,  col_gray3,  col_gray3 },
+	[SchemeTag8]         = { col_blue,     col_bg2,  col_gray3,  col_gray3 },
+	[SchemeTag9]         = { col_cyan,     col_bg2,  col_gray3,  col_gray3 },
+	[SchemeTag10]        = { col_yellow,   col_bg2,  col_gray3,  col_gray3 },
+	[SchemeUrg]          = { col_fg,       col_bg2,       col_red,       col_magenta },
 };
 
 
@@ -318,7 +245,9 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *dmenucmd[] = {
+static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_bg, "-nf", col_fg, "-sb", col_red, "-sf", col_bg, NULL };
+static const char *roficmd[] = {
 	"rofi",
 	"-show", 
 	"drun", 
@@ -337,13 +266,15 @@ static const char *scratchcmd3[] = {"d", "kitty", "--title", "Scratchpad [d]", N
 
 static Key keys[] = {
 	/* modifier                     key            function                argument */
-	{ MODKEY,                       XK_space,      spawn,                  {.v = dmenucmd } },
+	{ MODKEY,                       XK_space,      spawn,                  {.v = roficmd } },
+	{ MODKEY|ShiftMask,             XK_space,      spawn,                  {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return,     spawn,                  {.v = termcmd } },
+	{ MODKEY|ShiftMask,             XK_p,          spawn,                  SHCMD("prompt.sh") },
 	{ MODKEY|ControlMask,           XK_p,          riospawnsync,           {.v = dmenucmd } },
 	{ MODKEY|ControlMask,           XK_Return,     riospawn,               {.v = termcmd } },
 	{ MODKEY,                       XK_s,          rioresize,              {0} },
         SCRATCHKEYS(                    XK_a,                                  scratchcmd1)
-        SCRATCHKEYS(                    XK_s,                                  scratchcmd2)
+        /* SCRATCHKEYS(                    XK_s,                                  scratchcmd2) */
         SCRATCHKEYS(                    XK_d,                                  scratchcmd3)
 	{ MODKEY,                       XK_b,          togglebar,              {0} },
 	{ MODKEY,                       XK_j,          focusstack,             {.i = +1 } },
@@ -360,7 +291,7 @@ static Key keys[] = {
 	{ MODKEY|Mod1Mask|ShiftMask,    XK_j,          inplacerotate,          {.i = +1} },
 	{ MODKEY|Mod1Mask|ShiftMask,    XK_k,          inplacerotate,          {.i = -1} },
 	{ MODKEY,                       XK_i,          incnmaster,             {.i = +1 } },
-	{ MODKEY,                       XK_d,          incnmaster,             {.i = -1 } },
+	/* { MODKEY,                       XK_d,          incnmaster,             {.i = -1 } }, */
 	{ MODKEY,                       XK_h,          setmfact,               {.f = -0.05} },
 	{ MODKEY,                       XK_l,          setmfact,               {.f = +0.05} },
 	{ MODKEY|ShiftMask,             XK_h,          setcfact,               {.f = +0.25} },
@@ -405,7 +336,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_m,          setlayout,              {.v = &layouts[2]} },
 	{ MODKEY,                       XK_c,          setlayout,              {.v = &layouts[3]} },
 	{ MODKEY,                       XK_p,          setlayout,              {0} },
-	{ MODKEY|ShiftMask,             XK_space,      togglefloating,         {0} },
+	{ MODKEY|ControlMask,           XK_f,          togglefloating,         {0} },
 	{ MODKEY,                       XK_y,          togglefullscreen,       {0} },
 	{ MODKEY|ShiftMask,             XK_y,          togglefakefullscreen,   {0} },
 	{ MODKEY|ShiftMask,             XK_f,          fullscreen,             {0} },
@@ -417,6 +348,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_comma,      tagmon,                 {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period,     tagmon,                 {.i = +1 } },
 	{ MODKEY,                       XK_n,          togglealttag,           {0} },
+        { MODKEY|ShiftMask,             XK_m,          spawn,                  SHCMD("~/.config/rofi/scripts/layout_switcher.sh")},
 	/* Note that due to key limitations the below example kybindings are defined with a Mod3Mask,
 	 * which is not always readily available. Refer to the patch wiki for more details. */
 	/* Client position is limited to monitor window area */
@@ -476,13 +408,15 @@ static Key keys[] = {
 static Button buttons[] = {
 	/* click                event mask           button          function        argument */
 	{ ClkButton,            0,                   Button1,        spawn,          {.v = dmenucmd } },
-	/* { ClkButton,            0,                   Button2,        self_restart,           {0} }, */
+	{ ClkButton,            0,                   Button2,        self_restart,           {0} },
 	{ ClkLtSymbol,          0,                   Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,                   Button3,        layoutmenu,     {0} },
+	{ ClkWinTitle,          0,                   Button3,        spawn,          SHCMD("clientmenu.sh") },
 	{ ClkWinTitle,          0,                   Button2,        zoom,           {0} },
 	{ ClkStatusText,        0,                   Button1,        sigstatusbar,   {.i = 1 } },
 	{ ClkStatusText,        0,                   Button2,        sigstatusbar,   {.i = 2 } },
 	{ ClkStatusText,        0,                   Button3,        sigstatusbar,   {.i = 3 } },
+        { ClkRootWin,           0,                   Button3,        spawn,          SHCMD("rootmenu.sh") },
 	/* placemouse options, choose which feels more natural:
 	 *    0 - tiled position is relative to mouse cursor
 	 *    1 - tiled postiion is relative to window center
@@ -517,6 +451,7 @@ static IPCCommand ipccommands[] = {
 	IPCCOMMAND( killclient, 1, {ARG_TYPE_SINT} ),
 	IPCCOMMAND( quit, 1, {ARG_TYPE_NONE} ),
 	IPCCOMMAND( setlayoutsafe, 1, {ARG_TYPE_PTR} ),
+        IPCCOMMAND( setlayoutex, 1, {ARG_TYPE_SINT} ),
 	IPCCOMMAND( setmfact, 1, {ARG_TYPE_FLOAT} ),
 	IPCCOMMAND( setstatus, 1, {ARG_TYPE_STR} ),
 	IPCCOMMAND( tag, 1, {ARG_TYPE_UINT} ),
