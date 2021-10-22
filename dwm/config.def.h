@@ -223,8 +223,8 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_bg, "-nf", col_fg, "-sb", col_red, "-sf", col_bg, NULL };
 static const char *roficmd[] = {
 	"rofi",
-	"-show", 
-	"drun", 
+	"-show",
+	"drun",
 	NULL
 };
 static const char *termcmd[]  = { "kitty", NULL };
@@ -246,9 +246,9 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_p,          spawn,                  SHCMD("prompt.sh") },
 	{ MODKEY|ControlMask,           XK_p,          riospawnsync,           {.v = dmenucmd } },
 	{ MODKEY|ControlMask,           XK_Return,     riospawn,               {.v = termcmd } },
-	{ MODKEY,                       XK_s,          rioresize,              {0} },
+	/* { MODKEY,                       XK_s,          rioresize,              {0} }, */
         SCRATCHKEYS(                    XK_a,                                  scratchcmd1)
-        /* SCRATCHKEYS(                    XK_s,                                  scratchcmd2) */
+        SCRATCHKEYS(                    XK_s,                                  scratchcmd2)
         SCRATCHKEYS(                    XK_d,                                  scratchcmd3)
 	{ MODKEY,                       XK_b,          togglebar,              {0} },
 	{ MODKEY,                       XK_j,          focusstack,             {.i = +1 } },
